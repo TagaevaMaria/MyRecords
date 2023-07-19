@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_records/screens/auth_screen.dart';
+import 'package:my_records/screens/auth_screen/auth_screen.dart';
 
 import 'navigation/main_navigation.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: MainNavigationRoutsName.authScreen,
-      home: const AuthScreen(),
+      home: const AuthScreenBody(),
       routes: mainNavigation.routes,
     );
   }

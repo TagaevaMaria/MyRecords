@@ -34,10 +34,34 @@ class AddRecordScreen extends StatelessWidget {
       ),
       body: const Column(
         children: [
-          Text('Дата'),
-          Text('Наименование тренировки'),
-          Text('Описание'),
-          Text('Достижение'),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), hintText: 'Дата'),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Наименование тренировки')),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Описание тренировки'),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Рекорд')),
+          ),
         ],
       ),
     );
