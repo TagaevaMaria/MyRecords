@@ -1,54 +1,24 @@
-import 'package:flutter/cupertino.dart';
-
-import '../../navigation/main_navigation.dart';
+import 'package:flutter/material.dart';
+import 'package:my_records/navigation/main_navigation.dart';
 
 class AuthScreenModel extends ChangeNotifier {
-  void prii() {
-    print("5555555555555555");
+  String error = '';
+  final textController = TextEditingController(text: "5555");
+
+  ///метод навигации на экран HomeScreens
+  navigationHomeScreens(BuildContext context) {
+    Navigator.pushReplacementNamed(context, MainNavigationRoutsName.homeScreen);
+    notifyListeners();
   }
 
-  final authController = TextEditingController();
-  String? errorText = '';
-
-  ///показывает ошибку, либо переходит на другой экран.
-  void auth(BuildContext context) {
-    final name = authController.text;
-    if (name.isEmpty) {
-      errorText = 'введите имя';
+  /// Показать ошибку
+  auth(BuildContext context) {
+    final name = textController;
+    if (textController.text.isEmpty) {
+      error = 'Введите имя';
     } else {
-      Navigator.pushNamed(context, MainNavigationRoutsName.homeScreen);
+      navigationHomeScreens(context);
     }
-    if (errorText == null) const Text('введите имя');
-  }
-
-  void navig(BuildContext context) {
-    Navigator.pushNamed(context, MainNavigationRoutsName.homeScreen);
-    ;
-  }
-}
-
-/// инхерит
-class AuthScreenModelProvider extends InheritedNotifier {
-  final AuthScreenModel model;
-  const AuthScreenModelProvider({
-    Key? key,
-    required this.model,
-    required Widget child,
-  }) : super(
-          key: key,
-          notifier: model,
-          child: child,
-        );
-
-  static AuthScreenModelProvider? watch(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<AuthScreenModelProvider>();
-  }
-
-  static AuthScreenModelProvider? read(BuildContext context) {
-    final widget = context
-        .getElementForInheritedWidgetOfExactType<AuthScreenModelProvider>()
-        ?.widget;
-    return widget is AuthScreenModelProvider ? widget : null;
+    notifyListeners();
   }
 }

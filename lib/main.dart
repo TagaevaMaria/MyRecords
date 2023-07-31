@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_records/screens/auth_screen/auth_screen.dart';
+import 'package:hive_flutter/adapters.dart';
 
 import 'navigation/main_navigation.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 
@@ -15,7 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: MainNavigationRoutsName.authScreen,
-      home: const AuthScreenBody(),
       routes: mainNavigation.routes,
     );
   }

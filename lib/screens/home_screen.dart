@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_records/screens/record_screen.dart';
+import 'package:my_records/screens/add_record/add_record_screen.dart';
+import 'package:my_records/screens/my_results/my_results.dart';
 import 'package:my_records/screens/trening_screen.dart';
 
-import 'add_record_screen.dart';
 import 'my_notes.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: const [
-        RecordScreen(),
-        AddRecordScreen(),
+        MyResultsBody(),
+        AddRecordScreenBody(),
         MyNotes(),
         TreningScreen(),
       ]),
