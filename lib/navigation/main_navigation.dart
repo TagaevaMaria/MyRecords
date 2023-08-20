@@ -15,6 +15,6 @@ class MainNavigation {
   final routes = <String, Widget Function(BuildContext)>{
     '/AuthScreen': (BuildContext context) => const AuthScreenBody(),
     '/HomeScreen': (BuildContext context) => const HomeScreen(),
-    '/MyResultsBody': (BuildContext context) => const MyResultsBody(),
+    '/MyResultsBody': (BuildContext context) => MyResultsBody(),
   };
 }

@@ -8,9 +8,21 @@ class MyResultsModel extends ChangeNotifier {
   List<Results> get results => _results.toList();
 
   MyResultsModel() {
-    _setap();
+    _setapNameTrening();
   }
-  void _setap() async {
+
+  ///Блок сохранения "Наименование тренировки"
+
+  void deleteNameTrening({required int nameTreningIndex}) async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(ResultsAdapter());
+    }
+    final box = await Hive.openBox<Results>('name_trening_box');
+    await box.deleteAt(nameTreningIndex);
+  }
+
+  /// Метод, который сохраняет и показывает текст "Наименование тренировки"
+  void _setapNameTrening() async {
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ResultsAdapter());
     }
@@ -19,6 +31,25 @@ class MyResultsModel extends ChangeNotifier {
     notifyListeners();
     box.listenable().addListener(() {
       _results = box.values.toList();
+
+      notifyListeners();
+    });
+  }
+
+  ///Блок сохранения "Описание тренировки"
+
+  var _descriptionTrening = <Results>[];
+  List<Results> get descriptionTrening => _descriptionTrening.toList();
+
+  void _setapDescriptionTrening() async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(ResultsAdapter());
+    }
+    final box = await Hive.openBox<Results>('description_trening');
+    _descriptionTrening = box.values.toList();
+    notifyListeners();
+    box.listenable().addListener(() {
+      _descriptionTrening = box.values.toList();
       notifyListeners();
     });
   }

@@ -39,10 +39,10 @@ class AddRecordScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           TextButton(
-              onPressed: () => _model.saveNameTrening(context),
+              onPressed: () => _model.saveResult(context),
               child: const Icon(
                 Icons.check_rounded,
-                color: Colors.white,
+                color: Colors.red,
               )),
           TextButton(
             onPressed: () {},
@@ -59,7 +59,6 @@ class AddRecordScreen extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: TextField(
                 onChanged: (value) => _model.nameTrening = value,
-                onEditingComplete: () => _model.saveNameTrening(context),
                 controller: _model.controllerNameTrening,
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -68,6 +67,7 @@ class AddRecordScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
+              onChanged: (value) => _model.descriptionTrening = value,
               controller: _model.controllerDescriptionTrening,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),

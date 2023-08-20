@@ -7,5 +7,14 @@ class Results {
   @HiveField(0)
   String nameTrening;
 
-  Results({required this.nameTrening});
+  @HiveField(1)
+  String descriptionTrening;
+
+  @HiveField(2)
+  String myRecord;
+
+  Results(
+      {required this.nameTrening,
+      required this.descriptionTrening,
+      required this.myRecord});
 }

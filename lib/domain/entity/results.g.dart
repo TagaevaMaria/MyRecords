@@ -18,6 +18,8 @@ class ResultsAdapter extends TypeAdapter<Results> {
     };
     return Results(
       nameTrening: fields[0] as String,
+      descriptionTrening: '',
+      myRecord: '',
     );
   }
 
