@@ -9,6 +9,8 @@ class MyResultsModel extends ChangeNotifier {
 
   MyResultsModel() {
     _setapNameTrening();
+    _setapDescriptionTrening();
+    _setapRecord();
   }
 
   ///Блок сохранения "Наименование тренировки"
@@ -50,6 +52,24 @@ class MyResultsModel extends ChangeNotifier {
     notifyListeners();
     box.listenable().addListener(() {
       _descriptionTrening = box.values.toList();
+      notifyListeners();
+    });
+  }
+
+  ///Блок сохранения "Рекорд"
+
+  var _record = <Results>[];
+  List<Results> get record => _record.toList();
+
+  void _setapRecord() async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(ResultsAdapter());
+    }
+    final box = await Hive.openBox<Results>('record');
+    _record = box.values.toList();
+    notifyListeners();
+    box.listenable().addListener(() {
+      _record = box.values.toList();
       notifyListeners();
     });
   }

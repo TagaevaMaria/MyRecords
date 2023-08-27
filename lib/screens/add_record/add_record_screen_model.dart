@@ -20,7 +20,7 @@ class AddRecordScreenModel extends ChangeNotifier {
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: myRecord);
+        myRecord: record);
     await box.add(results);
     controllerNameTrening.clear();
 
@@ -35,40 +35,43 @@ class AddRecordScreenModel extends ChangeNotifier {
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ResultsAdapter());
     }
-    final box = await Hive.openBox('description_trening');
+    final box = await Hive.openBox('description_trening_box');
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: myRecord);
+        myRecord: record);
     await box.add(results);
     controllerDescriptionTrening.clear();
     notifyListeners();
   }
 
   ///Блок сохранения "Рекорд"
-  var myRecord = '';
+  var record = '';
 
-  void _savemyRecord(BuildContext context) async {
-    if (descriptionTrening.isEmpty) return;
+  void _saveRecord(BuildContext context) async {
+    if (record.isEmpty) return;
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ResultsAdapter());
     }
-    final box = await Hive.openBox('my_record');
+    final box = await Hive.openBox('record_box');
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: myRecord);
+        myRecord: record);
     await box.add(results);
     controllerRecords.clear();
     notifyListeners();
   }
 
-  ///общий метод,который сохранит [_saveNameTrening], [_saveDescriptionTrening], [_savemyRecord]
+  ///общий метод,который сохранит [_saveNameTrening], [_saveDescriptionTrening], [_saveRecord]
 
   void saveResult(BuildContext context) {
     _saveNameTrening(context);
     _saveDescriptionTrening(context);
-    _savemyRecord(context);
+    _saveRecord(context);
     notifyListeners();
   }
+
+  /// Сохраняет выбронную дату
+  DateTime dateTime = DateTime.now();
 }

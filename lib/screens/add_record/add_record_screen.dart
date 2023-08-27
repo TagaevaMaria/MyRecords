@@ -77,9 +77,14 @@ class AddRecordScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
-                controller: _model.controllerRecords,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), hintText: 'Рекорд')),
+              onChanged: (value) => _model.record = value,
+              controller: _model.controllerRecords,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), hintText: 'Рекорд'),
+            ),
+          ),
+          Text(
+            _model.dateTime.toString(),
           ),
           Container(
             color: Colors.red,

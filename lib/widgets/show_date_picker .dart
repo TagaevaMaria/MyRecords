@@ -21,7 +21,7 @@ class _DatePickerExampleState extends State<DatePickerExample>
       RestorableDateTime(DateTime(2021, 7, 25));
   late final RestorableRouteFuture<DateTime?> _restorableDatePickerRouteFuture =
       RestorableRouteFuture<DateTime?>(
-    onComplete: _selectDate,
+    onComplete: selectDate,
     onPresent: (NavigatorState navigator, Object? arguments) {
       return navigator.restorablePush(
         _datePickerRoute,
@@ -56,13 +56,14 @@ class _DatePickerExampleState extends State<DatePickerExample>
         _restorableDatePickerRouteFuture, 'date_picker_route_future');
   }
 
-  void _selectDate(DateTime? newSelectedDate) {
+  void selectDate(DateTime? newSelectedDate) {
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-              'Selected: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
+              'Дата: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
         ));
       });
     }
