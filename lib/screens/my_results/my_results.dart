@@ -2,27 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:my_records/screens/my_results/my_results_model.dart';
 import 'package:provider/provider.dart';
 
-class MyResultsBody extends StatefulWidget {
-  MyResultsBody({
+import '../../di/di_container.dart';
+
+class MyResultsBody extends StatelessWidget {
+  const MyResultsBody({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MyResultsBody> createState() => _MyResultsBodyState();
-}
-
-class _MyResultsBodyState extends State<MyResultsBody> {
-  @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyResultsModel(),
-      child: _MyResults(),
-    );
+    return DIContainer.myResults();
   }
 }
 
-class _MyResults extends StatelessWidget {
-  const _MyResults({
+class MyResults extends StatelessWidget {
+  const MyResults({
     Key? key,
   }) : super(key: key);
 
