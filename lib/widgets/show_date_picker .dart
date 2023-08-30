@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 
-///Виджетыы выбора даты
-
+///Календарь
 class DatePickerExample extends StatefulWidget {
   const DatePickerExample({super.key, this.restorationId});
 
   final String? restorationId;
 
   @override
-  State<DatePickerExample> createState() => _DatePickerExampleState();
+  State<DatePickerExample> createState() => DatePickerExampleState();
 }
 
 /// RestorationProperty objects can be used because of RestorationMixin.
-class _DatePickerExampleState extends State<DatePickerExample>
+class DatePickerExampleState extends State<DatePickerExample>
     with RestorationMixin {
   @override
   String? get restorationId => widget.restorationId;
 
   final RestorableDateTime _selectedDate =
-      RestorableDateTime(DateTime(2021, 7, 25));
+      RestorableDateTime(DateTime(2023, 8, 29));
   late final RestorableRouteFuture<DateTime?> _restorableDatePickerRouteFuture =
       RestorableRouteFuture<DateTime?>(
     onComplete: selectDate,
@@ -40,10 +39,10 @@ class _DatePickerExampleState extends State<DatePickerExample>
       builder: (BuildContext context) {
         return DatePickerDialog(
           restorationId: 'date_picker_dialog',
-          initialEntryMode: DatePickerEntryMode.calendarOnly,
+          initialEntryMode: DatePickerEntryMode.calendar,
           initialDate: DateTime.fromMillisecondsSinceEpoch(arguments! as int),
-          firstDate: DateTime(2021),
-          lastDate: DateTime(2022),
+          firstDate: DateTime(2023),
+          lastDate: DateTime(2030),
         );
       },
     );
@@ -60,10 +59,9 @@ class _DatePickerExampleState extends State<DatePickerExample>
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
-
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-              'Дата: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
+              'Selected: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
         ));
       });
     }
@@ -73,18 +71,11 @@ class _DatePickerExampleState extends State<DatePickerExample>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SizedBox(
-          height: 100,
-          width: 400,
-          child: TextButton(
-            onPressed: () {
-              _restorableDatePickerRouteFuture.present();
-            },
-            child: const Text(
-              'Выбрать дату',
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
+        child: OutlinedButton(
+          onPressed: () {
+            _restorableDatePickerRouteFuture.present();
+          },
+          child: const Text('Выбрать дату'),
         ),
       ),
     );

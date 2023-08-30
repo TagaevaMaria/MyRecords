@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 import '../../domain/entity/results.dart';
+import '../../widgets/show_date_picker .dart';
 
 class AddRecordScreenModel extends ChangeNotifier {
   final controllerNameTrening = TextEditingController();
@@ -72,6 +73,10 @@ class AddRecordScreenModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Сохраняет выбронную дату
+  /// Сохраняет выбронную дату. Календарь.
   DateTime dateTime = DateTime.now();
+  final saveData = DatePickerExample();
+  void aaaaa() {
+    saveData.restorationId;
+  }
 }

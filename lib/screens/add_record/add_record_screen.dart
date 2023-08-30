@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_records/widgets/show_date_picker .dart';
+import 'package:my_records/di/di_container.dart';
 import 'package:provider/provider.dart';
 
 import 'add_record_screen_model.dart';
@@ -14,9 +14,7 @@ class AddRecordScreenBody extends StatefulWidget {
 class _AddRecordScreenBodyState extends State<AddRecordScreenBody> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => AddRecordScreenModel(),
-        child: const AddRecordScreen());
+    return DIContainer.addResults();
   }
 }
 
@@ -56,7 +54,7 @@ class AddRecordScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextField(
                 onChanged: (value) => _model.nameTrening = value,
                 controller: _model.controllerNameTrening,
@@ -83,15 +81,8 @@ class AddRecordScreen extends StatelessWidget {
                   border: OutlineInputBorder(), hintText: 'Рекорд'),
             ),
           ),
-          Text(
-            _model.dateTime.toString(),
-          ),
-          Container(
-            color: Colors.red,
-            height: 59.0,
-            width: 395.4,
-            child: const DatePickerExample(),
-          ),
+          Text(_model.aaaaa.toString()),
+          TextButton(onPressed: () {}, child: Text('Выберите дату'))
         ],
       ),
     );
