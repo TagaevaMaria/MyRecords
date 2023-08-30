@@ -4,14 +4,9 @@ import 'package:provider/provider.dart';
 
 import 'add_record_screen_model.dart';
 
-class AddRecordScreenBody extends StatefulWidget {
+class AddRecordScreenBody extends StatelessWidget {
   const AddRecordScreenBody({Key? key}) : super(key: key);
 
-  @override
-  State<AddRecordScreenBody> createState() => _AddRecordScreenBodyState();
-}
-
-class _AddRecordScreenBodyState extends State<AddRecordScreenBody> {
   @override
   Widget build(BuildContext context) {
     return DIContainer.addResults();
@@ -24,6 +19,9 @@ class AddRecordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _model = context.read<AddRecordScreenModel>();
+    final myDateTime =
+        context.select((AddRecordScreenModel value) => value.myDateTime);
+
     return Scaffold(
       appBar: AppBar(
         title: TextButton(
@@ -81,8 +79,11 @@ class AddRecordScreen extends StatelessWidget {
                   border: OutlineInputBorder(), hintText: 'Рекорд'),
             ),
           ),
-          Text(_model.aaaaa.toString()),
-          TextButton(onPressed: () {}, child: Text('Выберите дату'))
+          Text(
+              '${myDateTime.day.toString()} ${_model.myDateTime.month.toString()} ${_model.myDateTime.year.toString()}'),
+          TextButton(
+              onPressed: () => _model.calendar(context),
+              child: const Text('Выберите дату'))
         ],
       ),
     );
