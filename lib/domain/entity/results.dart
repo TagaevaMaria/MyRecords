@@ -13,8 +13,12 @@ class Results {
   @HiveField(2)
   String myRecord;
 
+  @HiveField(3)
+  String dateTrening;
+
   Results(
       {required this.nameTrening,
       required this.descriptionTrening,
-      required this.myRecord});
+      required this.myRecord,
+      required this.dateTrening});
 }

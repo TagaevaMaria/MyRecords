@@ -79,13 +79,15 @@ class AddRecordScreen extends StatelessWidget {
                   border: OutlineInputBorder(), hintText: 'Рекорд'),
             ),
           ),
-          Text(
-              '${myDateTime.day.toString()} ${_model.myDateTime.month.toString()} ${_model.myDateTime.year.toString()}'),
+          Text(_model.myDateTime.toString()),
           TextButton(
-              onPressed: () => _model.calendar(context),
-              child: const Text('Выберите дату'))
+            onPressed: () => _model.calendar(context),
+            child: const Text('Выберите дату'),
+          )
         ],
       ),
     );
   }
 }
+
+///'${_model.myDateTime.day.toString()} ${_model.myDateTime.month.toString()} ${_model.myDateTime.year.toString()}'

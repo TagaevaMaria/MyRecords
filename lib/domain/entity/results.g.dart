@@ -20,6 +20,7 @@ class ResultsAdapter extends TypeAdapter<Results> {
       nameTrening: fields[0] as String,
       descriptionTrening: '',
       myRecord: '',
+      dateTrening: '',
     );
   }
 

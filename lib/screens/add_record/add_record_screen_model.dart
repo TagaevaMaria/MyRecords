@@ -7,6 +7,7 @@ class AddRecordScreenModel extends ChangeNotifier {
   final controllerNameTrening = TextEditingController();
   final controllerDescriptionTrening = TextEditingController();
   final controllerRecords = TextEditingController();
+  final controllerData = TextEditingController();
 
   var nameTrening = '';
 
@@ -20,7 +21,8 @@ class AddRecordScreenModel extends ChangeNotifier {
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: record);
+        myRecord: record,
+        dateTrening: date);
     await box.add(results);
     controllerNameTrening.clear();
 
@@ -39,7 +41,8 @@ class AddRecordScreenModel extends ChangeNotifier {
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: record);
+        myRecord: record,
+        dateTrening: date);
     await box.add(results);
     controllerDescriptionTrening.clear();
     notifyListeners();
@@ -57,9 +60,29 @@ class AddRecordScreenModel extends ChangeNotifier {
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: record);
+        myRecord: record,
+        dateTrening: date);
     await box.add(results);
     controllerRecords.clear();
+    notifyListeners();
+  }
+
+  ///Блок сохранения "Дата"
+  var date = '';
+
+  void _saveDate(BuildContext context) async {
+    if (date.isEmpty) return;
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(ResultsAdapter());
+    }
+    final box = await Hive.openBox('date_box');
+    final results = Results(
+        nameTrening: nameTrening,
+        descriptionTrening: descriptionTrening,
+        myRecord: date,
+        dateTrening: date);
+    await box.add(results);
+    controllerData.clear();
     notifyListeners();
   }
 
