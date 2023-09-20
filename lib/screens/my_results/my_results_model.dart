@@ -11,6 +11,7 @@ class MyResultsModel extends ChangeNotifier {
     _setapNameTrening();
     _setapDescriptionTrening();
     _setapRecord();
+    _setapDataRecord();
   }
 
   ///Блок сохранения "Наименование тренировки"
@@ -72,5 +73,39 @@ class MyResultsModel extends ChangeNotifier {
       _record = box.values.toList();
       notifyListeners();
     });
+  }
+
+  ///блок схранения даты рекорда
+  var _dataRecord = <Results>[];
+  List<Results> get dataRecord => _dataRecord.toList();
+
+  void _setapDataRecord() async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(ResultsAdapter());
+    }
+    final box = await Hive.openBox<Results>('date_box');
+    _dataRecord = box.values.toList();
+    notifyListeners();
+    box.listenable().addListener(() {
+      _dataRecord = box.values.toList();
+      notifyListeners();
+    });
+  }
+
+  DateTime myDateTime = DateTime.now();
+  calendar(BuildContext context) async {
+    final data = await showDatePicker(
+      context: context,
+      initialDate: myDateTime,
+      firstDate: DateTime(2023),
+      lastDate: DateTime.now(),
+      selectableDayPredicate: (data) {
+        myDateTime = data;
+        return true;
+      },
+    );
+    if (data != null) {
+      myDateTime = data;
+    }
   }
 }

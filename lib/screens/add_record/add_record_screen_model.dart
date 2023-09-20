@@ -79,19 +79,20 @@ class AddRecordScreenModel extends ChangeNotifier {
     final results = Results(
         nameTrening: nameTrening,
         descriptionTrening: descriptionTrening,
-        myRecord: date,
+        myRecord: record,
         dateTrening: date);
     await box.add(results);
     controllerData.clear();
     notifyListeners();
   }
 
-  ///общий метод,который сохранит [_saveNameTrening], [_saveDescriptionTrening], [_saveRecord]
+  ///общий метод,который сохранит [_saveNameTrening], [_saveDescriptionTrening], [_saveRecord], [_saveDate]
 
   void saveResult(BuildContext context) {
     _saveNameTrening(context);
     _saveDescriptionTrening(context);
     _saveRecord(context);
+    _saveDate(context);
     notifyListeners();
   }
 

@@ -23,6 +23,8 @@ class MyResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _model = context.watch<MyResultsModel>();
+    final myDateTime =
+        context.select((MyResultsModel value) => value.myDateTime);
 
     return Scaffold(
       body: ListView.builder(
@@ -40,12 +42,12 @@ class MyResults extends StatelessWidget {
                           Card(
                             child: Column(
                               children: [
-                                const Text('Дата'),
                                 Text(
                                   _model.results[index].nameTrening,
                                 ),
                                 Text(_model.results[index].descriptionTrening),
                                 Text(_model.results[index].myRecord),
+                                Text(myDateTime.toString().substring(0, 10)),
                               ],
                             ),
                           ),

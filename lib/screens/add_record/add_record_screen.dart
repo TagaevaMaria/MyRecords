@@ -19,8 +19,6 @@ class AddRecordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _model = context.read<AddRecordScreenModel>();
-    final myDateTime =
-        context.select((AddRecordScreenModel value) => value.myDateTime);
 
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +77,6 @@ class AddRecordScreen extends StatelessWidget {
                   border: OutlineInputBorder(), hintText: 'Рекорд'),
             ),
           ),
-          Text(_model.myDateTime.toString()),
           TextButton(
             onPressed: () => _model.calendar(context),
             child: const Text('Выберите дату'),
