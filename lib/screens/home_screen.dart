@@ -3,6 +3,7 @@ import 'package:my_records/screens/add_record/add_record_screen.dart';
 import 'package:my_records/screens/my_results/my_results.dart';
 import 'package:my_records/screens/trening_screen.dart';
 
+import 'foto/screen_foto.dart';
 import 'my_notes.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,11 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: [
+      body: IndexedStack(index: _currentIndex, children: const [
         MyResultsBody(),
-        const AddRecordScreenBody(),
-        const MyNotes(),
-        const TreningScreen(),
+        AddRecordScreenBody(),
+        MyNotes(),
+        ScreenFoto(),
+        TreningScreen(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue,
