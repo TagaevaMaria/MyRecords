@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../screens/add_record/add_record_screen.dart';
 import '../screens/add_record/add_record_screen_model.dart';
+import '../screens/foto/screen_photo.dart';
+import '../screens/foto/screen_photo_model.dart';
 import '../screens/my_results/my_results.dart';
 import '../screens/my_results/my_results_model.dart';
 
@@ -18,5 +20,12 @@ class DIContainer {
     return ChangeNotifierProvider(
         create: (context) => AddRecordScreenModel(),
         child: const AddRecordScreen());
+  }
+
+  static Widget addFoto() {
+    return ChangeNotifierProvider(
+      create: (context) => ScreenFotoModel(),
+      child: const ScreenFoto(),
+    );
   }
 }

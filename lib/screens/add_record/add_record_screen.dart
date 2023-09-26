@@ -86,5 +86,3 @@ class AddRecordScreen extends StatelessWidget {
     );
   }
 }
-
-///'${_model.myDateTime.day.toString()} ${_model.myDateTime.month.toString()} ${_model.myDateTime.year.toString()}'
