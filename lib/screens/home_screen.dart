@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_records/screens/add_record/add_record_screen.dart';
 import 'package:my_records/screens/my_results/my_results.dart';
+import 'package:my_records/screens/photo/screen_photo.dart';
 import 'package:my_records/screens/trening_screen.dart';
 
-import 'foto/screen_photo.dart';
 import 'my_notes.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: const [
+      body: IndexedStack(index: _currentIndex, children: [
         MyResultsBody(),
         AddRecordScreenBody(),
         MyNotes(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:my_records/screens/home_screen.dart';
 
 import 'navigation/main_navigation.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: HomeScreen(),
       initialRoute: MainNavigationRoutsName.authScreen,
       routes: mainNavigation.routes,
     );

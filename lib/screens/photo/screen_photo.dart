@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_records/screens/foto/screen_photo_model.dart';
+import 'package:my_records/screens/photo/screen_photo_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../di/di_container.dart';
@@ -21,6 +21,7 @@ class ScreenFoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _model = context.watch<ScreenFotoModel>();
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
@@ -75,6 +76,14 @@ class ScreenFoto extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Фото"),
       ),
+      body: GridView.builder(
+          itemCount: _model.myImages.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return _model.myImages[index].myPhoto;
+          }),
     );
   }
 }
