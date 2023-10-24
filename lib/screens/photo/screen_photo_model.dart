@@ -7,6 +7,7 @@ class ScreenFotoModel extends ChangeNotifier {
   ///Метод,который выбирает изображение из галлереи.
 
   File? selectedImgae;
+  ImagePicker image = ImagePicker();
 
   Future pickImageFromGallery() async {
     final returnedImage =
@@ -25,6 +26,35 @@ class ScreenFotoModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext aaa) {
+          return SafeArea(
+            child: Wrap(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.image),
+                  title: const Text('Gallery'),
+                  onTap: () {
+                    pickImageFromGallery();
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.add_a_photo_outlined),
+                  title: const Text('Camera'),
+                  onTap: () {
+                    pickImageFromCamera();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
+          );
+        });
+  }
+
   ///Блок по отображению фото с камера или с галлерии
 
   List<MyImages> myImages = [
@@ -37,12 +67,7 @@ class ScreenFotoModel extends ChangeNotifier {
     MyImages(
       Image.asset('assets/images/photo3.jpeg'),
     ),
-    MyImages(
-      Image.asset('assets/images/photo4.jpeg'),
-    )
   ];
-
-  /// Получение списка камер.
 }
 
 class MyImages {
