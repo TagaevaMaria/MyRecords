@@ -4,7 +4,7 @@ import 'package:my_records/screens/my_results/my_results.dart';
 import 'package:my_records/screens/photo/screen_photo.dart';
 import 'package:my_records/screens/trening_screen.dart';
 
-import 'my_notes.dart';
+import 'notes/my_notes.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
