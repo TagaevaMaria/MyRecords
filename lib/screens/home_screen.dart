@@ -5,6 +5,8 @@ import 'package:my_records/screens/notes/notes_screen.dart';
 import 'package:my_records/screens/photo/screen_photo.dart';
 import 'package:my_records/screens/trening_screen.dart';
 
+
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
