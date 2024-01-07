@@ -24,68 +24,23 @@ class ScreenFoto extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => showDialog(
-            context: context,
-            builder: (context) => (AlertDialog(
-                  title: Row(
-                    children: [
-                      const Text('Выберите фото'),
-                      const SizedBox(width: 50),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, false),
-                        child: const Icon(Icons.close),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    _model.selectedImgae != null
-                        ? Image.file(_model.selectedImgae!)
-                        : const Center(child: Text('Веберите изображение')),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: TextButton(
-                              onPressed: () {
-                                _model.pickImageFromGallery();
-                              },
-                              child: const Text('Галлерея'),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 90),
-                            child: TextButton(
-                              onPressed: () {},
-                              child: TextButton(
-                                onPressed: () {
-                                  _model.pickImageFromCamera();
-                                },
-                                child: const Text('Камера'),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ))),
+        onPressed: () => _model.showPicker(context),
+        child: const Icon(Icons.add_a_photo),
       ),
       appBar: AppBar(
         title: const Text("Фото"),
       ),
       body: GridView.builder(
-          itemCount: _model.myImages.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return _model.myImages[index].myPhoto;
-          }),
+        itemCount: _model.listImages.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _model.image != null
+              ? Image.file(_model.image!)
+              : Text('l;mjnjkn');
+        },
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+        ),
+      ),
     );
   }
 }
-
-/// если после закрытия диалогового окна хочу передать результат, то делаем так Navigator.pop(context, result);

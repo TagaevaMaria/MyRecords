@@ -28,7 +28,6 @@ class MyResults extends StatelessWidget {
 
     return Scaffold(
       body: ListView.builder(
-          itemCount: _model.results.length,
           itemBuilder: (BuildContext context, int index) {
             return Center(
               child: Padding(
@@ -37,35 +36,43 @@ class MyResults extends StatelessWidget {
                   key: Key(_model.results.toString()),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Card(
-                            child: Column(
+                      Card(
+                        color: Colors.blue,
+                        child: Column(
+                          children: [
+                            Text(
+                              myDateTime.toString().substring(0, 10),
+                            ),
+                            Row(
                               children: [
+                                const Text('Тренировка: '),
                                 Text(
                                   _model.results[index].nameTrening,
                                 ),
-                                Text(_model.results[index].descriptionTrening),
-                                Text(_model.results[index].myRecord),
-                                Text(myDateTime.toString().substring(0, 10)),
                               ],
                             ),
-                          ),
-                          IconButton(
-                              onPressed: () => _model.deleteNameTrening(
-                                  nameTreningIndex: index),
-                              icon: Icon(Icons.delete))
-                        ],
-                      ),
-                      const Divider(
-                        color: Colors.black,
+                            Row(
+                              children: [
+                                const Text('Описание: '),
+                                Text(_model.results[index].descriptionTrening),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Text('Рекорд: '),
+                                Text(_model.results[index].myRecord),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
             );
-          }),
+          },
+          itemCount: _model.results.length),
     );
   }
 }

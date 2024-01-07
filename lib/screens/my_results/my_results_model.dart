@@ -22,9 +22,11 @@ class MyResultsModel extends ChangeNotifier {
     }
     final box = await Hive.openBox<Results>('name_trening_box');
     await box.deleteAt(nameTreningIndex);
+    notifyListeners();
   }
 
   /// Метод, который сохраняет и показывает текст "Наименование тренировки"
+
   void _setapNameTrening() async {
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ResultsAdapter());
@@ -109,3 +111,5 @@ class MyResultsModel extends ChangeNotifier {
     }
   }
 }
+
+/// треринуюсь
