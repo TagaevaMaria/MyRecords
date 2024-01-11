@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_records/screens/notes/my_notes.dart';
+import 'package:my_records/screens/notes/my_notes_model.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/add_record/add_record_screen.dart';
@@ -26,6 +28,13 @@ class DIContainer {
     return ChangeNotifierProvider(
       create: (context) => ScreenFotoModel(),
       child: const ScreenFoto(),
+    );
+  }
+
+  static Widget myNotes() {
+    return ChangeNotifierProvider(
+      create: (context) => MyNotesModel(),
+      child:  ScreenMyNotes(),
     );
   }
 }

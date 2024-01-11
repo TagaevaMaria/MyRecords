@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
+      home: const HomeScreen(),
       initialRoute: MainNavigationRoutsName.authScreen,
       routes: mainNavigation.routes,
     );
